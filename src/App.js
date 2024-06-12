@@ -4,7 +4,7 @@ import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
 import happyCouple from './assets/happy-couple.png';
 import backgroundVideo from './assets/background-video.mp4';
-import backgroundMusic from './assets/music-background.mp3';
+
 
 function App() {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -37,14 +37,11 @@ function App() {
   return (
     <div className="app">
       {showConfetti && <Confetti width={width} height={height} />}
-      <video className="background-video" autoPlay loop>
+      <video className="background-video" autoPlay loop muted>
         <source src={backgroundVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <audio className="background-music" autoPlay loop>
-        <source src={backgroundMusic} type="audio/mpeg" />
-        Your browser does not support the audio tag.
-      </audio>
+    
       <div className="container">
         <h1>Você quer ser minha namorada?</h1>
         {!showPopup && (
