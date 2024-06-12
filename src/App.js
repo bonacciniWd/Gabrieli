@@ -104,7 +104,7 @@ function App() {
     <div className="app">
       {showReadyScreen ? (
         <div className="ready-screen">
-          <p style={{padding:'80px', fontFamily:'fantasy'}}>⚠️ Atenção, ao clicar em concordo você assume por sua conta em risco as possíveis consequencias do mau uso desta aplicação</p>
+          <p style={{padding:'50px', fontFamily:'sans-serif'}}>⚠️ Atenção, ao clicar em concordo você assume por sua conta em risco as possíveis consequencias do mau uso desta aplicação</p>
           <button onClick={handleReadyYesClick}>Prosseguir</button>
         </div>
       ) : (
