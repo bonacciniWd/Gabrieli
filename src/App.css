@@ -55,9 +55,9 @@ body {
 
 .initial-modal-content {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Courier New', Courier, monospace; /* Estilo de fonte de máquina de escrever */
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .initial-buttons {
