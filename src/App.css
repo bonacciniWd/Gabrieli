@@ -26,10 +26,6 @@ body {
   opacity: 0.7;
 }
 
-.background-music {
-  display: outline;
-}
-
 .container {
   text-align: center;
   background: rgba(24, 21, 21, 0.8);
@@ -76,11 +72,13 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(26, 25, 25, 0.89);
   padding: 40px;
+  border: 2px solid #f44336;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.756);
   text-align: center;
+  width: 90%;
   animation: blink-animation 1s steps(5, start) infinite;
   z-index: 10;
 }
@@ -98,6 +96,7 @@ button {
 
 .popup p {
   font-size: 20px;
+  color: aliceblue;
   margin-top: 20px;
 }
 
@@ -105,4 +104,39 @@ button {
   to {
     transform: scale(1.1);
   }
+}
+
+.initial-modal, .second-modal, .no-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(18, 17, 17, 0.742);
+  padding: 20px;
+  color: aliceblue;
+  border-radius: 10px;
+  border: solid 1px #f44336;
+  box-shadow: 0 6px 8px rgba(204, 173, 193, 0.514);
+  z-index: 10;
+}
+
+.initial-modal-content, .second-modal-content, .no-modal-content {
+  text-align: center;
+}
+
+.initial-buttons button, .second-modal-content button, .no-modal-content button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.radio-group {
+  margin: 10px 0;
+}
+
+.radio-group label {
+  margin-right: 10px;
 }
