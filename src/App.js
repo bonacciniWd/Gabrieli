@@ -143,7 +143,7 @@ function App() {
           {showSecondModal && (
             <div className="second-modal">
               <div className="second-modal-content">
-                <p>🛈 Você acredita em amor à primeira vista?</p>
+                <p> ◄ Você acredita em amor à primeira vista?</p>
                 <div className="radio-group">
                   <label>
                     <input
@@ -166,7 +166,7 @@ function App() {
                     Não
                   </label>
                 </div>
-                <p>🛈 Você acredita que nossa conexão vai além do físico?</p>
+                <p> ◄ Você acredita que nossa conexão vai além do físico?</p>
                 <div className="radio-group">
                   <label>
                     <input
@@ -189,7 +189,7 @@ function App() {
                     Não
                   </label>
                 </div>
-                <p>🛈 Você confia em mim?</p>
+                <p> ◄ Você confia em mim?</p>
                 <div className="radio-group">
                   <label>
                     <input
@@ -212,7 +212,7 @@ function App() {
                     Não
                   </label>
                 </div>
-                <p>🛈 Você sente que crescemos juntos emocionalmente desde que nos conhecemos?</p>
+                <p> ◄ Você sente que crescemos juntos emocionalmente desde que nos conhecemos?</p>
                 <div className="radio-group">
                   <label>
                     <input
