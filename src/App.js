@@ -12,6 +12,7 @@ function App() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [showReadyScreen, setShowReadyScreen] = useState(true); // New state for ready screen
   const [rejectStyle, setRejectStyle] = useState({});
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -94,164 +95,178 @@ function App() {
 
   const canProceedFromSecondModal = secondModalAnswers.question1 && secondModalAnswers.question2 && secondModalAnswers.question3 && secondModalAnswers.question4;
 
+  const handleReadyYesClick = () => {
+    setShowReadyScreen(false);
+    setShowInitialModal(true);
+  };
+
   return (
     <div className="app">
-      {showConfetti && <Confetti width={width} height={height} />}
-      <video className="background-video" autoPlay loop muted playsInline>
-        <source src={backgroundVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {showReadyScreen ? (
+        <div className="ready-screen">
+          <p style={{padding:'80px', fontFamily:'fantasy'}}>⚠️ Atenção, ao clicar em concordo você assume por sua conta em risco as possíveis consequencias do mau uso desta aplicação</p>
+          <button onClick={handleReadyYesClick}>Prosseguir</button>
+        </div>
+      ) : (
+        <>
+          {showConfetti && <Confetti width={width} height={height} />}
+          <video className="background-video" autoPlay loop muted playsInline>
+            <source src={backgroundVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
-      {showInitialModal && (
-        <div className="initial-modal">
-          <div className="initial-modal-content">
-            {initialTexts.slice(0, currentTextIndex + 1).map((text, index) => (
-              <p key={index}>{index === currentTextIndex ? currentText : text}</p>
-            ))}
-            {currentTextIndex >= initialTexts.length && (
-              <div className="initial-buttons">
-                <button onClick={handleInitialYesClick}>Sim</button>
-                <button onClick={handleInitialNoClick}>Não</button>
+          {showInitialModal && (
+            <div className="initial-modal">
+              <div className="initial-modal-content">
+                {initialTexts.slice(0, currentTextIndex + 1).map((text, index) => (
+                  <p key={index}>{index === currentTextIndex ? currentText : text}</p>
+                ))}
+                {currentTextIndex >= initialTexts.length && (
+                  <div className="initial-buttons">
+                    <button onClick={handleInitialYesClick}>Sim</button>
+                    <button onClick={handleInitialNoClick}>Não</button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {showNoModal && (
-        <div className="no-modal">
-          <div className="no-modal-content">
-            <p>QUE PENA!</p>
-            <button onClick={handleNoModalClose}>Fechar</button>
-          </div>
-        </div>
-      )}
-
-      {showSecondModal && (
-        <div className="second-modal">
-          <div className="second-modal-content">
-            <p>🛈 Você acredita em amor à primeira vista?</p>
-            <div className="radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="question1"
-                  value="sim"
-                  checked={secondModalAnswers.question1 === 'sim'}
-                  onChange={handleSecondModalChange}
-                />
-                Sim
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="question1"
-                  value="nao"
-                  checked={secondModalAnswers.question1 === 'nao'}
-                  onChange={handleSecondModalChange}
-                />
-                Não
-              </label>
-            </div>
-            <p>🛈 Você acredita que nossa conexão vai além do físico?</p>
-            <div className="radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="question2"
-                  value="sim"
-                  checked={secondModalAnswers.question2 === 'sim'}
-                  onChange={handleSecondModalChange}
-                />
-                Sim
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="question2"
-                  value="nao"
-                  checked={secondModalAnswers.question2 === 'nao'}
-                  onChange={handleSecondModalChange}
-                />
-                Não
-              </label>
-            </div>
-            <p>🛈 Você confia em mim?</p>
-            <div className="radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="question3"
-                  value="sim"
-                  checked={secondModalAnswers.question3 === 'sim'}
-                  onChange={handleSecondModalChange}
-                />
-                Sim
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="question3"
-                  value="nao"
-                  checked={secondModalAnswers.question3 === 'nao'}
-                  onChange={handleSecondModalChange}
-                />
-                Não
-              </label>
-            </div>
-            <p>🛈 Você sente que crescemos juntos emocionalmente desde que nos conhecemos?</p>
-            <div className="radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="question4"
-                  value="sim"
-                  checked={secondModalAnswers.question4 === 'sim'}
-                  onChange={handleSecondModalChange}
-                />
-                Sim
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="question4"
-                  value="nao"
-                  checked={secondModalAnswers.question4 === 'nao'}
-                  onChange={handleSecondModalChange}
-                />
-                Não
-              </label>
-            </div>
-            {canProceedFromSecondModal && (
-              <button onClick={handleSecondYesClick}>Prosseguir</button>
-            )}
-          </div>
-        </div>
-      )}
-
-      {showQuestion && (
-        <div className="container">
-          <h1>Você quer ser minha namorada?</h1>
-          {!showPopup && (
-            <div className="buttons">
-              <button id="accept" onClick={handleAcceptClick}>Aceitar</button>
-              <button
-                id="reject"
-                style={rejectStyle}
-                onMouseOver={moveRejectButton}
-              >
-                Recusar
-              </button>
             </div>
           )}
-        </div>
-      )}
 
-      {showPopup && (
-        <div className="popup">
-          <img src={happyCouple} alt="Casal Feliz" />
-          <p>Você fez uma boa escolha, parabéns! <br/> Bem vinda à minha vida!</p>
-        </div>
+          {showNoModal && (
+            <div className="no-modal">
+              <div className="no-modal-content">
+                <p>QUE PENA!</p>
+                <button onClick={handleNoModalClose}>Fechar</button>
+              </div>
+            </div>
+          )}
+
+          {showSecondModal && (
+            <div className="second-modal">
+              <div className="second-modal-content">
+                <p>🛈 Você acredita em amor à primeira vista?</p>
+                <div className="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="question1"
+                      value="sim"
+                      checked={secondModalAnswers.question1 === 'sim'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Sim
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="question1"
+                      value="nao"
+                      checked={secondModalAnswers.question1 === 'nao'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Não
+                  </label>
+                </div>
+                <p>🛈 Você acredita que nossa conexão vai além do físico?</p>
+                <div className="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="question2"
+                      value="sim"
+                      checked={secondModalAnswers.question2 === 'sim'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Sim
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="question2"
+                      value="nao"
+                      checked={secondModalAnswers.question2 === 'nao'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Não
+                  </label>
+                </div>
+                <p>🛈 Você confia em mim?</p>
+                <div className="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="question3"
+                      value="sim"
+                      checked={secondModalAnswers.question3 === 'sim'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Sim
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="question3"
+                      value="nao"
+                      checked={secondModalAnswers.question3 === 'nao'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Não
+                  </label>
+                </div>
+                <p>🛈 Você sente que crescemos juntos emocionalmente desde que nos conhecemos?</p>
+                <div className="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="question4"
+                      value="sim"
+                      checked={secondModalAnswers.question4 === 'sim'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Sim
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="question4"
+                      value="nao"
+                      checked={secondModalAnswers.question4 === 'nao'}
+                      onChange={handleSecondModalChange}
+                    />
+                    Não
+                  </label>
+                </div>
+                {canProceedFromSecondModal && (
+                  <button onClick={handleSecondYesClick}>Prosseguir</button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {showQuestion && (
+            <div className="container">
+              <h1>Você quer ser minha namorada?</h1>
+              {!showPopup && (
+                <div className="buttons">
+                  <button id="accept" onClick={handleAcceptClick}>Aceitar</button>
+                  <button
+                    id="reject"
+                    style={rejectStyle}
+                    onMouseOver={moveRejectButton}
+                  >
+                    Recusar
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {showPopup && (
+            <div className="popup">
+              <img src={happyCouple} alt="Casal Feliz" />
+              <p>Você fez uma boa escolha, parabéns! <br/> Bem vinda à minha vida!</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
